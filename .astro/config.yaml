@@ -1,0 +1,4 @@
+project:
+  name: skill-up-da-c-python
+postgres:
+  port: 5432
