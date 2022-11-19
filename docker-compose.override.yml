@@ -1,0 +1,8 @@
+version: "3.1"
+services:
+  scheduler:
+    volumes:
+      - C:\Users\Usuario\Desktop\Alk-Project-Py\Skill-Up-DA-c-Python/files:/usr/local/airflow/files:rw
+      - C:\Users\Usuario\Desktop\Alk-Project-Py\Skill-Up-DA-c-Python/include:/usr/local/airflow/include:rw
+      - ./dags/logs:/usr/local/airflow/mylogs:rw
+ 

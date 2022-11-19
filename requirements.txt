@@ -1,0 +1,6 @@
+python-decouple==3.6
+apache-airflow-providers-postgres==5.2.2
+pandas==1.5.0
+SQLAlchemy==1.4.41
+apache-airflow-providers-amazon==6.0.0
+
