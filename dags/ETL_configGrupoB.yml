@@ -1,0 +1,55 @@
+   
+default:
+  default_args:
+    owner: "BROC95"
+    start_date: 2018-03-01
+    # end_date: 2018-03-05
+    retries: 1
+    retry_delay_sec: 300
+  concurrency: 1
+  max_active_runs: 1
+  dagrun_timeout_sec: 600
+  default_view: "tree"
+  orientation: "LR"
+  schedule_interval: "@daily"
+
+
+
+
+ETL_dag:
+    tasks:
+      
+      Extract_B1:
+        operator: airflow.operators.python.PythonOperator
+  
+        python_callable_name: 'extract'
+        python_callable_file: /usr/local/airflow/dags/GBUNComahue_dag_elt.py
+
+      Transform_B1:
+        operator: airflow.operators.python.PythonOperator
+        python_callable_name: 'transform'
+        python_callable_file: /usr/local/airflow/dags/GBUNComahue_dag_elt.py
+        dependencies: [Extract_B1]
+      Load_B1:
+        operator: airflow.operators.python.PythonOperator
+        python_callable_name: 'load'
+        python_callable_file: /usr/local/airflow/dags/GBUNComahue_dag_elt.py
+        dependencies: [Transform_B1]    
+
+      Extract_B2:
+        operator: airflow.operators.python.PythonOperator
+        python_callable_name: 'extract'
+        python_callable_file: /usr/local/airflow/dags/GBUNSalvador_dag_elt.py
+
+      Transform_B2:
+        operator: airflow.operators.python.PythonOperator
+        python_callable_name: 'extract'
+        python_callable_file: /usr/local/airflow/dags/GBUNSalvador_dag_elt.py
+        dependencies: [Extract_B2]
+      Load_B2:
+        operator: airflow.operators.python.PythonOperator
+        python_callable_name: 'load'
+        python_callable_file: /usr/local/airflow/dags/GBUNSalvador_dag_elt.py
+        dependencies: [Transform_B2]
+
+
